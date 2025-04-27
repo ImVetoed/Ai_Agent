@@ -1,0 +1,29 @@
+{
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 18528,
+                "file_path": "results\\testMaze2\\MoveToGoal\\MoveToGoal-18528.onnx",
+                "reward": 0.0,
+                "creation_time": 1745492768.9625928,
+                "auxillary_file_paths": [
+                    "results\\testMaze2\\MoveToGoal\\MoveToGoal-18528.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 18528,
+            "file_path": "results\\testMaze2\\MoveToGoal.onnx",
+            "reward": 0.0,
+            "creation_time": 1745492768.9625928,
+            "auxillary_file_paths": [
+                "results\\testMaze2\\MoveToGoal\\MoveToGoal-18528.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.1.1+cu118"
+    }
+}
