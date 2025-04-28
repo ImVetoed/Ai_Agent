@@ -8,12 +8,12 @@ behaviors:
       learning_rate: 0.001
       beta: 0.005
       epsilon: 0.9
-      epsilon_schedule: linear
       lambd: 0.95
       num_epoch: 3
       shared_critic: false
       learning_rate_schedule: linear
       beta_schedule: linear
+      epsilon_schedule: linear
     checkpoint_interval: 500000
     network_settings:
       normalize: false
@@ -59,17 +59,17 @@ engine_settings:
   width: 84
   height: 84
   quality_level: 5
-  time_scale: 20
+  time_scale: 20.0
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
   no_graphics_monitor: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: Testmaze_Fixed
+  run_id: NewRun4
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: true
   inference: false
