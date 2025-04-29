@@ -11,26 +11,43 @@ public class AIScript : Agent
     [SerializeField] private Transform goal;
     private MazeManager mazeManager;
 
+    [SerializeField] private Transform checkpoint1Transform;
+    [SerializeField] private Transform checkpoint2Transform;
+
+    private Collider checkpoint1Collider;
+    private Collider checkpoint2Collider;
+
+    private bool hasHitCheckpoint1 = false;
+    private bool hasHitCheckpoint2 = false;
+
     private float goalReward = 200f;
     private float wallPenalty = -20f;
     private Vector3 previousPosition;
     private float oldDistance;
     private Rigidbody rb;
+    
 
 
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
         mazeManager = GetComponentInParent<MazeManager>();
+      
     }
 
     public override void OnEpisodeBegin()
     {
-        mazeManager.SetupMaze();
-
+        oldDistance = Vector3.Distance(transform.position, goal.position);
         transform.localPosition = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         rb.linearVelocity = Vector3.zero;
         previousPosition = transform.localPosition;
+
+        checkpoint1Collider = checkpoint1Transform.GetComponent<Collider>();
+        checkpoint2Collider = checkpoint2Transform.GetComponent<Collider>();
+
+        hasHitCheckpoint1 = false;
+        hasHitCheckpoint2 = false;
+        mazeManager.SetupMaze();
 
     }
 
@@ -45,6 +62,28 @@ public class AIScript : Agent
     void CollectObstacleSensor(VectorSensor sensor)
     {
         float raycastRange = 3f;
+        int Rays = 12;
+        float angleIncrement = 360f / Rays;
+
+        for (int i = 0; i < Rays; i++)
+        {
+            float angle = i * angleIncrement;
+            Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, raycastRange))
+            {
+                if (hit.collider.CompareTag("Wall"))
+                    sensor.AddObservation(1f);
+                else if (hit.collider.CompareTag("Goal"))
+                    sensor.AddObservation(2f);
+                else
+                    sensor.AddObservation(0.5f);
+            }
+            else
+            {
+                sensor.AddObservation(0f);
+            }
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -65,15 +104,20 @@ public class AIScript : Agent
         transform.localPosition += forwardMovement + strafeMovement;
         float currentDistance = Vector3.Distance(transform.position, goal.transform.position);
 
+        if (!hasHitCheckpoint1 && checkpoint1Collider.bounds.Contains(transform.position))
+        {
+            AddReward(1.0f);
+            hasHitCheckpoint1 = true;
+        }
 
-        if (currentDistance < oldDistance)
+        if (!hasHitCheckpoint2 && checkpoint2Collider.bounds.Contains(transform.position))
         {
-            AddReward(0.01f); 
+            AddReward(1.5f);
+            hasHitCheckpoint2 = true;
         }
-        else
-        {
-            AddReward(-0.04f); 
-        }
+
+        float distanceReward = (oldDistance - currentDistance) * 0.1f;
+        AddReward(distanceReward);
         float distanceMoved = Vector3.Distance(transform.localPosition, previousPosition);
         AddReward(-0.002f);
         

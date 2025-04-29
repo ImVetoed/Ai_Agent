@@ -1,0 +1,56 @@
+{
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 5867,
+                "file_path": "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-5867.onnx",
+                "reward": -25.854956835508347,
+                "creation_time": 1745955037.4107177,
+                "auxillary_file_paths": [
+                    "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-5867.pt"
+                ]
+            },
+            {
+                "steps": 499999,
+                "file_path": "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-499999.onnx",
+                "reward": -24.01989060640335,
+                "creation_time": 1745955823.6391127,
+                "auxillary_file_paths": [
+                    "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-499999.pt"
+                ]
+            },
+            {
+                "steps": 999988,
+                "file_path": "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-999988.onnx",
+                "reward": 200.50785817839204,
+                "creation_time": 1745956646.4701478,
+                "auxillary_file_paths": [
+                    "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-999988.pt"
+                ]
+            },
+            {
+                "steps": 1057586,
+                "file_path": "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-1057586.onnx",
+                "reward": 200.36418090820314,
+                "creation_time": 1745956896.8510773,
+                "auxillary_file_paths": [
+                    "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-1057586.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1057586,
+            "file_path": "results\\Testmaze_Fixed\\MoveToGoal.onnx",
+            "reward": 200.36418090820314,
+            "creation_time": 1745956896.8510773,
+            "auxillary_file_paths": [
+                "results\\Testmaze_Fixed\\MoveToGoal\\MoveToGoal-1057586.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cpu"
+    }
+}
