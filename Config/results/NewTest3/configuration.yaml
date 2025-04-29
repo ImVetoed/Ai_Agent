@@ -5,15 +5,15 @@ behaviors:
     hyperparameters:
       batch_size: 1024
       buffer_size: 10240
-      learning_rate: 0.0002
-      beta: 0.0005
-      epsilon: 1.0
-      epsilon_schedule: linear
+      learning_rate: 0.0003
+      beta: 0.001
+      epsilon: 0.9
       lambd: 0.95
-      num_epoch: 5
+      num_epoch: 3
       shared_critic: false
       learning_rate_schedule: constant
       beta_schedule: linear
+      epsilon_schedule: linear
     checkpoint_interval: 500000
     network_settings:
       normalize: false
@@ -38,7 +38,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     even_checkpoints: false
-    max_steps: 7000000
+    max_steps: 40000000
     time_horizon: 64
     summary_freq: 50000
     threaded: false
@@ -59,17 +59,17 @@ engine_settings:
   width: 84
   height: 84
   quality_level: 5
-  time_scale: 20
+  time_scale: 20.0
   target_frame_rate: -1
   capture_frame_rate: 60
   no_graphics: false
   no_graphics_monitor: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: Testmaze_Fixed
+  run_id: NewTest3
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: true
   inference: false

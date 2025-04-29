@@ -10,11 +10,10 @@ public class AIScript : Agent
     [SerializeField] private MeshRenderer floorMeshRenderer;
     [SerializeField] private Transform goal;
 
-    private float goalReward = 200f;
-    private float wallPenalty = -0.5f;
-    private float previousDistanceToGoal;
-    private float previousPositionMagnitude;
-    private const float StepPenalty = -0.01f;
+    private float goalReward = 50f;
+    private float wallPenalty = -20f;
+    private Vector3 previousPosition;
+    private float oldDistance;
     private Rigidbody rb;
 
 
@@ -27,7 +26,8 @@ public class AIScript : Agent
     {
         transform.localPosition = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         rb.linearVelocity = Vector3.zero;
-        previousDistanceToGoal = Vector3.Distance(transform.localPosition, goal.localPosition);
+        previousPosition = transform.localPosition;
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -55,27 +55,39 @@ public class AIScript : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+
         float moveInput = actions.ContinuousActions[0];
         float turnInput = actions.ContinuousActions[1];
+        float strafeInput = actions.ContinuousActions[2];
+
         float moveSpeed = 3f;
-        float turnSpeed = 180f;
+        float turnSpeed = 60f;
 
         transform.Rotate(Vector3.up, turnInput * turnSpeed * Time.deltaTime);
 
-        // Move forward/backward
         Vector3 forwardMovement = transform.forward * moveInput * moveSpeed * Time.deltaTime;
-        // Strafe left/right
-        Vector3 strafeMovement = transform.right * actions.ContinuousActions[2] * moveSpeed * Time.deltaTime;
+        Vector3 strafeMovement = transform.right * strafeInput * moveSpeed * Time.deltaTime;
 
         transform.localPosition += forwardMovement + strafeMovement;
+        float currentDistance = Vector3.Distance(transform.position, goal.transform.position);
 
-        Vector3 currentPosition = transform.localPosition;
-        float currentDistanceToGoal = Vector3.Distance(currentPosition, goal.localPosition);
-        float reward = (previousDistanceToGoal - currentDistanceToGoal) * 0.5f + StepPenalty;
 
-        AddReward(reward);
-        previousDistanceToGoal = currentDistanceToGoal;
+        if (currentDistance < oldDistance)
+        {
+            AddReward(0.03f); 
+        }
+        else
+        {
+            AddReward(-0.04f); 
+        }
+        float distanceMoved = Vector3.Distance(transform.localPosition, previousPosition);
+        AddReward(-0.002f);
+        
+        previousPosition = transform.localPosition;
+        oldDistance = currentDistance;
     }
+
+
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
@@ -84,14 +96,15 @@ public class AIScript : Agent
         continuousActions[2] = Input.GetAxisRaw("Strafe");
     }
 
-    private void OnCollisionStay(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
       
         if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
         {
            
-            SetReward(wallPenalty);
+            AddReward(wallPenalty);
             floorMeshRenderer.material = loseMaterial;
+            EndEpisode();
         }
     }
 
