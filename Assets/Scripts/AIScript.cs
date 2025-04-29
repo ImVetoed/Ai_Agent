@@ -9,8 +9,9 @@ public class AIScript : Agent
     [SerializeField] private Material loseMaterial;
     [SerializeField] private MeshRenderer floorMeshRenderer;
     [SerializeField] private Transform goal;
+    private MazeManager mazeManager;
 
-    private float goalReward = 50f;
+    private float goalReward = 200f;
     private float wallPenalty = -20f;
     private Vector3 previousPosition;
     private float oldDistance;
@@ -20,10 +21,13 @@ public class AIScript : Agent
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
+        mazeManager = GetComponentInParent<MazeManager>();
     }
 
     public override void OnEpisodeBegin()
     {
+        mazeManager.SetupMaze();
+
         transform.localPosition = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         rb.linearVelocity = Vector3.zero;
         previousPosition = transform.localPosition;
@@ -41,16 +45,6 @@ public class AIScript : Agent
     void CollectObstacleSensor(VectorSensor sensor)
     {
         float raycastRange = 3f;
-
-        RaycastHit hit;
-        sensor.AddObservation(Physics.Raycast(transform.position, transform.forward, out hit, raycastRange) ? 1f : 0f);
-        sensor.AddObservation(Physics.Raycast(transform.position, transform.right, out hit, raycastRange) ? 1f : 0f);
-        sensor.AddObservation(Physics.Raycast(transform.position, -transform.right, out hit, raycastRange) ? 1f : 0f);
-        sensor.AddObservation(Physics.Raycast(transform.position, -transform.forward, out hit, raycastRange) ? 1f : 0f);
-
-      
-        sensor.AddObservation(Physics.Raycast(transform.position, (transform.forward + transform.right).normalized, out hit, raycastRange) ? 1f : 0f);
-        sensor.AddObservation(Physics.Raycast(transform.position, (transform.forward - transform.right).normalized, out hit, raycastRange) ? 1f : 0f);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -74,7 +68,7 @@ public class AIScript : Agent
 
         if (currentDistance < oldDistance)
         {
-            AddReward(0.03f); 
+            AddReward(0.01f); 
         }
         else
         {
