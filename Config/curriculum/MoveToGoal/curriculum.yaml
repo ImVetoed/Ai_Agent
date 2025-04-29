@@ -1,7 +1,0 @@
-curriculum:
-  measure: reward
-  thresholds: [100, 150]
-  min_lesson_length: 100
-  signal_smoothing: false
-  parameters:
-    maze_difficulty: [0, 1, 2]

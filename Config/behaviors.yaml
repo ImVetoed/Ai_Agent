@@ -58,7 +58,10 @@ env_settings:
   max_lifetime_restarts: 10
   restarts_rate_limit_n: 1
   restarts_rate_limit_period_s: 60
-environment_parameters: {}
+environment_parameters:
+  maze_difficulty:
+    sampler_type: constant
+    value: 1
 engine_settings:
   width: 84
   height: 84
