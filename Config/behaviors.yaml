@@ -61,7 +61,8 @@ env_settings:
 environment_parameters:
   maze_difficulty:
     sampler_type: constant
-    value: 1
+    sampler_parameters:
+      value: 0
 engine_settings:
   width: 84
   height: 84
