@@ -1,0 +1,41 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 499953,
+                "file_path": "results\\GeneratingChangingMaze0\\MoveToGoal\\MoveToGoal-499953.onnx",
+                "reward": -126.44836821556092,
+                "creation_time": 1746016873.056122,
+                "auxillary_file_paths": [
+                    "results\\GeneratingChangingMaze0\\MoveToGoal\\MoveToGoal-499953.pt"
+                ]
+            },
+            {
+                "steps": 847016,
+                "file_path": "results\\GeneratingChangingMaze0\\MoveToGoal\\MoveToGoal-847016.onnx",
+                "reward": -3.7926178723573685,
+                "creation_time": 1746017655.5772572,
+                "auxillary_file_paths": [
+                    "results\\GeneratingChangingMaze0\\MoveToGoal\\MoveToGoal-847016.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 847016,
+            "file_path": "results\\GeneratingChangingMaze0\\MoveToGoal.onnx",
+            "reward": -3.7926178723573685,
+            "creation_time": 1746017655.5772572,
+            "auxillary_file_paths": [
+                "results\\GeneratingChangingMaze0\\MoveToGoal\\MoveToGoal-847016.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

@@ -14,19 +14,25 @@ public class AIScript : Agent
     [SerializeField] private Transform checkpoint1Transform;
     [SerializeField] private Transform checkpoint2Transform;
 
-    private Collider checkpoint1Collider;
+    private MazeGenerator mazeGenerator;
+
+   /* private Collider checkpoint1Collider;
     private Collider checkpoint2Collider;
 
     private bool hasHitCheckpoint1 = false;
-    private bool hasHitCheckpoint2 = false;
+    private bool hasHitCheckpoint2 = false;*/
 
     private float goalReward = 30f;
     private float wallPenalty = -1f;
     private Vector3 previousPosition;
     private float oldDistance;
     private Rigidbody rb;
-   [SerializeField] private int wallHits;
+   
 
+    [SerializeField] private float stuckTimeThreshold = 1.0f;  // how long before we consider it stuck
+    [SerializeField] private int maxWallHits = 3;   // how many bump-and-runs we tolerate
+
+    private int wallHits = 0;
     private float wallContactTime = 0f;
 
 
@@ -34,26 +40,24 @@ public class AIScript : Agent
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
-        mazeManager = GetComponentInParent<MazeManager>();
-      
+        mazeGenerator = GetComponentInParent<MazeGenerator>();
+
     }
 
     public override void OnEpisodeBegin()
     {
-        oldDistance = Vector3.Distance(transform.position, goal.position);
-        transform.localPosition = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         rb.linearVelocity = Vector3.zero;
+        mazeGenerator.GenerateMaze();
         previousPosition = transform.localPosition;
+        oldDistance = Vector3.Distance(transform.position, goal.position);
 
         wallContactTime = 0f;
 
-        checkpoint1Collider = checkpoint1Transform.GetComponent<Collider>();
+        /*checkpoint1Collider = checkpoint1Transform.GetComponent<Collider>();
         checkpoint2Collider = checkpoint2Transform.GetComponent<Collider>();
 
         hasHitCheckpoint1 = false;
-        hasHitCheckpoint2 = false;
-        mazeManager.SetupMaze();
-
+        hasHitCheckpoint2 = false;*/
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -108,7 +112,7 @@ public class AIScript : Agent
         AddReward(progressReward);
         oldDistance = currentDistance;
 
-        if (!hasHitCheckpoint1 && checkpoint1Collider.bounds.Contains(transform.position))
+        /*if (!hasHitCheckpoint1 && checkpoint1Collider.bounds.Contains(transform.position))
         {
             AddReward(1.0f);
             hasHitCheckpoint1 = true;
@@ -118,7 +122,7 @@ public class AIScript : Agent
         {
             AddReward(1.5f);
             hasHitCheckpoint2 = true;
-        }
+        }*/
 
        
         float distanceMoved = Vector3.Distance(transform.localPosition, previousPosition);
@@ -137,23 +141,26 @@ public class AIScript : Agent
         continuousActions[2] = Input.GetAxisRaw("Strafe");
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(Collision other)
     {
-      
-        if (collision.gameObject.TryGetComponent<Wall>(out Wall wall))
+        if (other.gameObject.TryGetComponent<Wall>(out _))
         {
             wallContactTime += Time.deltaTime;
-
-            if (wallContactTime >= 0.5f)
+            // if they’re literally stuck against a wall for too long
+            if (wallContactTime >= stuckTimeThreshold)
             {
-                AddReward(wallPenalty);
-                floorMeshRenderer.material = loseMaterial;
-
+                AddReward(wallPenalty * 2); // bigger penalty for being stuck
                 EndEpisode();
-
             }
-           
-           
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.TryGetComponent<Wall>(out _))
+        {
+            // reset the stuck timer as soon as they move off
+            wallContactTime = 0f;
         }
     }
 
