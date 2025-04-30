@@ -1,0 +1,32 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 1653197,
+                "file_path": "results\\LearningTHING\\MoveToGoal\\MoveToGoal-1653197.onnx",
+                "reward": null,
+                "creation_time": 1745975390.6288843,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING\\MoveToGoal\\MoveToGoal-1653197.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1653197,
+            "file_path": "results\\LearningTHING\\MoveToGoal.onnx",
+            "reward": null,
+            "creation_time": 1745975390.6288843,
+            "auxillary_file_paths": [
+                "results\\LearningTHING\\MoveToGoal\\MoveToGoal-1653197.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

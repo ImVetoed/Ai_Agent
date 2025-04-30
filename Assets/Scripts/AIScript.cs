@@ -20,12 +20,14 @@ public class AIScript : Agent
     private bool hasHitCheckpoint1 = false;
     private bool hasHitCheckpoint2 = false;
 
-    private float goalReward = 200f;
-    private float wallPenalty = -20f;
+    private float goalReward = 30f;
+    private float wallPenalty = -5f;
     private Vector3 previousPosition;
     private float oldDistance;
     private Rigidbody rb;
-    
+   [SerializeField] private int wallHits;
+
+
 
 
     public override void Initialize()
@@ -72,16 +74,12 @@ public class AIScript : Agent
 
             if (Physics.Raycast(transform.position, direction, out RaycastHit hit, raycastRange))
             {
-                if (hit.collider.CompareTag("Wall"))
-                    sensor.AddObservation(1f);
-                else if (hit.collider.CompareTag("Goal"))
-                    sensor.AddObservation(2f);
-                else
-                    sensor.AddObservation(0.5f);
+                float normalizedDistance = hit.distance / raycastRange;
+                sensor.AddObservation(normalizedDistance);
             }
             else
             {
-                sensor.AddObservation(0f);
+                sensor.AddObservation(0f); 
             }
         }
     }
@@ -102,7 +100,10 @@ public class AIScript : Agent
         Vector3 strafeMovement = transform.right * strafeInput * moveSpeed * Time.deltaTime;
 
         transform.localPosition += forwardMovement + strafeMovement;
-        float currentDistance = Vector3.Distance(transform.position, goal.transform.position);
+        float currentDistance = Vector3.Distance(transform.position, goal.position);
+        float delta = oldDistance - currentDistance;
+        AddReward(Mathf.Clamp(delta * 0.1f, -0.05f, 0.1f));  // scaled + clamped
+        oldDistance = currentDistance;
 
         if (!hasHitCheckpoint1 && checkpoint1Collider.bounds.Contains(transform.position))
         {
@@ -116,7 +117,7 @@ public class AIScript : Agent
             hasHitCheckpoint2 = true;
         }
 
-        float distanceReward = (oldDistance - currentDistance) * 0.1f;
+        float distanceReward = (oldDistance - currentDistance) * 0.2f;
         AddReward(distanceReward);
         float distanceMoved = Vector3.Distance(transform.localPosition, previousPosition);
         AddReward(-0.002f);
@@ -139,10 +140,12 @@ public class AIScript : Agent
       
         if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
         {
+            
            
             AddReward(wallPenalty);
             floorMeshRenderer.material = loseMaterial;
-            EndEpisode();
+           
+                EndEpisode();
         }
     }
 
