@@ -72,15 +72,15 @@ environment_parameters:
     - value:
         sampler_type: constant
         sampler_parameters:
-          seed: 9599
+          seed: 9436
           value: 2.0
       name: maze_difficulty
       completion_criteria: null
 checkpoint_settings:
-  run_id: LearningTHING2
+  run_id: LearningTHING3
   initialize_from: null
   load_model: false
-  resume: true
+  resume: false
   force: false
   train_model: true
   inference: false

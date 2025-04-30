@@ -1,0 +1,59 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 499967,
+                "file_path": "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-499967.onnx",
+                "reward": -8.344091539783403,
+                "creation_time": 1746006994.329943,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-499967.pt"
+                ]
+            },
+            {
+                "steps": 999980,
+                "file_path": "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-999980.onnx",
+                "reward": -9.487552930201803,
+                "creation_time": 1746007371.9190044,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-999980.pt"
+                ]
+            },
+            {
+                "steps": 1499956,
+                "file_path": "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-1499956.onnx",
+                "reward": -9.164454421028495,
+                "creation_time": 1746007759.8712542,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-1499956.pt"
+                ]
+            },
+            {
+                "steps": 1596362,
+                "file_path": "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-1596362.onnx",
+                "reward": null,
+                "creation_time": 1746007840.8920174,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-1596362.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1596362,
+            "file_path": "results\\LearningTHING3\\MoveToGoal.onnx",
+            "reward": null,
+            "creation_time": 1746007840.8920174,
+            "auxillary_file_paths": [
+                "results\\LearningTHING3\\MoveToGoal\\MoveToGoal-1596362.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

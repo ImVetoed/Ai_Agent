@@ -4,6 +4,7 @@ using Unity.MLAgents;
 public class MazeManager : MonoBehaviour
 {
     [SerializeField] private Transform goalTransform;
+    [SerializeField] private GameObject middleWall;
 
     private void Start()
     {
@@ -12,6 +13,8 @@ public class MazeManager : MonoBehaviour
 
     public void SetupMaze()
     {
+        bool enableWall = Random.value > 0.5f;
+        middleWall.SetActive(enableWall);
         int difficulty = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("maze_difficulty", 0);
         switch (difficulty)
         {

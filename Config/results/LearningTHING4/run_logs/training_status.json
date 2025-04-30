@@ -1,0 +1,50 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 338252,
+                "file_path": "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-338252.onnx",
+                "reward": null,
+                "creation_time": 1746009083.3448691,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-338252.pt"
+                ]
+            },
+            {
+                "steps": 499960,
+                "file_path": "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-499960.onnx",
+                "reward": 27.27081246538596,
+                "creation_time": 1746009414.5322468,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-499960.pt"
+                ]
+            },
+            {
+                "steps": 531954,
+                "file_path": "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-531954.onnx",
+                "reward": 29.413402888923883,
+                "creation_time": 1746009507.921804,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-531954.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 531954,
+            "file_path": "results\\LearningTHING4\\MoveToGoal.onnx",
+            "reward": 29.413402888923883,
+            "creation_time": 1746009507.921804,
+            "auxillary_file_paths": [
+                "results\\LearningTHING4\\MoveToGoal\\MoveToGoal-531954.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

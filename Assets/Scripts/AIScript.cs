@@ -21,12 +21,13 @@ public class AIScript : Agent
     private bool hasHitCheckpoint2 = false;
 
     private float goalReward = 30f;
-    private float wallPenalty = -5f;
+    private float wallPenalty = -1f;
     private Vector3 previousPosition;
     private float oldDistance;
     private Rigidbody rb;
    [SerializeField] private int wallHits;
 
+    private float wallContactTime = 0f;
 
 
 
@@ -43,6 +44,8 @@ public class AIScript : Agent
         transform.localPosition = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         rb.linearVelocity = Vector3.zero;
         previousPosition = transform.localPosition;
+
+        wallContactTime = 0f;
 
         checkpoint1Collider = checkpoint1Transform.GetComponent<Collider>();
         checkpoint2Collider = checkpoint2Transform.GetComponent<Collider>();
@@ -63,7 +66,7 @@ public class AIScript : Agent
     }
     void CollectObstacleSensor(VectorSensor sensor)
     {
-        float raycastRange = 3f;
+        float raycastRange = 5f;
         int Rays = 12;
         float angleIncrement = 360f / Rays;
 
@@ -101,8 +104,8 @@ public class AIScript : Agent
 
         transform.localPosition += forwardMovement + strafeMovement;
         float currentDistance = Vector3.Distance(transform.position, goal.position);
-        float delta = oldDistance - currentDistance;
-        AddReward(Mathf.Clamp(delta * 0.1f, -0.05f, 0.1f));  // scaled + clamped
+        float progressReward = (oldDistance - currentDistance) * 0.05f;
+        AddReward(progressReward);
         oldDistance = currentDistance;
 
         if (!hasHitCheckpoint1 && checkpoint1Collider.bounds.Contains(transform.position))
@@ -117,10 +120,9 @@ public class AIScript : Agent
             hasHitCheckpoint2 = true;
         }
 
-        float distanceReward = (oldDistance - currentDistance) * 0.2f;
-        AddReward(distanceReward);
+       
         float distanceMoved = Vector3.Distance(transform.localPosition, previousPosition);
-        AddReward(-0.002f);
+        AddReward(-0.001f);
         
         previousPosition = transform.localPosition;
         oldDistance = currentDistance;
@@ -135,17 +137,23 @@ public class AIScript : Agent
         continuousActions[2] = Input.GetAxisRaw("Strafe");
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision collision)
     {
       
-        if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
+        if (collision.gameObject.TryGetComponent<Wall>(out Wall wall))
         {
-            
-           
-            AddReward(wallPenalty);
-            floorMeshRenderer.material = loseMaterial;
-           
+            wallContactTime += Time.deltaTime;
+
+            if (wallContactTime >= 0.5f)
+            {
+                AddReward(wallPenalty);
+                floorMeshRenderer.material = loseMaterial;
+
                 EndEpisode();
+
+            }
+           
+           
         }
     }
 

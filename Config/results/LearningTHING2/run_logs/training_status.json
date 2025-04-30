@@ -5,40 +5,58 @@
     "MoveToGoal": {
         "checkpoints": [
             {
-                "steps": 167601,
-                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-167601.onnx",
-                "reward": 30.486143747965496,
-                "creation_time": 1745975343.9555674,
+                "steps": 5499983,
+                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-5499983.onnx",
+                "reward": -5.839754402637482,
+                "creation_time": 1745979978.4058554,
                 "auxillary_file_paths": [
-                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-167601.pt"
+                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-5499983.pt"
                 ]
             },
             {
-                "steps": 499950,
-                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-499950.onnx",
-                "reward": -7.751623292764028,
-                "creation_time": 1745975668.3819048,
+                "steps": 5999936,
+                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-5999936.onnx",
+                "reward": -6.168018733616918,
+                "creation_time": 1745980390.935671,
                 "auxillary_file_paths": [
-                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-499950.pt"
+                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-5999936.pt"
                 ]
             },
             {
-                "steps": 958031,
-                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-958031.onnx",
-                "reward": 32.69088097548081,
-                "creation_time": 1745976075.8908732,
+                "steps": 6499973,
+                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-6499973.onnx",
+                "reward": -5.315091440081597,
+                "creation_time": 1745980817.6467168,
                 "auxillary_file_paths": [
-                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-958031.pt"
+                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-6499973.pt"
+                ]
+            },
+            {
+                "steps": 6999960,
+                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-6999960.onnx",
+                "reward": -5.280070707709952,
+                "creation_time": 1745981234.8906593,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-6999960.pt"
+                ]
+            },
+            {
+                "steps": 7000024,
+                "file_path": "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-7000024.onnx",
+                "reward": -5.280070707709952,
+                "creation_time": 1745981235.0522394,
+                "auxillary_file_paths": [
+                    "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-7000024.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 958031,
+            "steps": 7000024,
             "file_path": "results\\LearningTHING2\\MoveToGoal.onnx",
-            "reward": 32.69088097548081,
-            "creation_time": 1745976075.8908732,
+            "reward": -5.280070707709952,
+            "creation_time": 1745981235.0522394,
             "auxillary_file_paths": [
-                "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-958031.pt"
+                "results\\LearningTHING2\\MoveToGoal\\MoveToGoal-7000024.pt"
             ]
         }
     },
