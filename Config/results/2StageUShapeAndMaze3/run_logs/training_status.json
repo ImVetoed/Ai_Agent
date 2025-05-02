@@ -1,0 +1,56 @@
+{
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 499929,
+                "file_path": "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-499929.onnx",
+                "reward": -14.409312099218369,
+                "creation_time": 1746122555.8328197,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-499929.pt"
+                ]
+            },
+            {
+                "steps": 999945,
+                "file_path": "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-999945.onnx",
+                "reward": -11.707538861249175,
+                "creation_time": 1746123481.9733775,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-999945.pt"
+                ]
+            },
+            {
+                "steps": 1499887,
+                "file_path": "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-1499887.onnx",
+                "reward": -5.928914248943329,
+                "creation_time": 1746124410.0875566,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-1499887.pt"
+                ]
+            },
+            {
+                "steps": 1804246,
+                "file_path": "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-1804246.onnx",
+                "reward": -7.775603299339612,
+                "creation_time": 1746125050.0640616,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-1804246.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1804246,
+            "file_path": "results\\2StageUShapeAndMaze3\\MoveToGoal.onnx",
+            "reward": -7.775603299339612,
+            "creation_time": 1746125050.0640616,
+            "auxillary_file_paths": [
+                "results\\2StageUShapeAndMaze3\\MoveToGoal\\MoveToGoal-1804246.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

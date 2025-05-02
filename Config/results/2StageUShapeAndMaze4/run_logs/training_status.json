@@ -1,0 +1,65 @@
+{
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 9999992,
+                "file_path": "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-9999992.onnx",
+                "reward": 27.917697627333148,
+                "creation_time": 1746201320.16359,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-9999992.pt"
+                ]
+            },
+            {
+                "steps": 10000072,
+                "file_path": "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10000072.onnx",
+                "reward": 28.216349564492702,
+                "creation_time": 1746201320.2762854,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10000072.pt"
+                ]
+            },
+            {
+                "steps": 10186559,
+                "file_path": "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10186559.onnx",
+                "reward": 34.17334222793579,
+                "creation_time": 1746205583.5204499,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10186559.pt"
+                ]
+            },
+            {
+                "steps": 10499984,
+                "file_path": "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10499984.onnx",
+                "reward": 29.03374168607924,
+                "creation_time": 1746206318.1915362,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10499984.pt"
+                ]
+            },
+            {
+                "steps": 10796097,
+                "file_path": "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10796097.onnx",
+                "reward": 19.443522279709576,
+                "creation_time": 1746207020.9267552,
+                "auxillary_file_paths": [
+                    "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10796097.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10796097,
+            "file_path": "results\\2StageUShapeAndMaze4\\MoveToGoal.onnx",
+            "reward": 19.443522279709576,
+            "creation_time": 1746207020.9267552,
+            "auxillary_file_paths": [
+                "results\\2StageUShapeAndMaze4\\MoveToGoal\\MoveToGoal-10796097.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

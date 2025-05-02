@@ -1,0 +1,68 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 5499979,
+                "file_path": "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-5499979.onnx",
+                "reward": -3.905659034848213,
+                "creation_time": 1746072982.0507069,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-5499979.pt"
+                ]
+            },
+            {
+                "steps": 5999967,
+                "file_path": "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-5999967.onnx",
+                "reward": -3.9562878906726837,
+                "creation_time": 1746074012.0183082,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-5999967.pt"
+                ]
+            },
+            {
+                "steps": 6499983,
+                "file_path": "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-6499983.onnx",
+                "reward": -3.897204369838749,
+                "creation_time": 1746075042.0067594,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-6499983.pt"
+                ]
+            },
+            {
+                "steps": 6999960,
+                "file_path": "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-6999960.onnx",
+                "reward": -4.3656586688011885,
+                "creation_time": 1746076071.9740326,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-6999960.pt"
+                ]
+            },
+            {
+                "steps": 7000024,
+                "file_path": "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-7000024.onnx",
+                "reward": -4.3656586688011885,
+                "creation_time": 1746076072.1254861,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-7000024.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7000024,
+            "file_path": "results\\TrainThroughNightMazeGeneration\\MoveToGoal.onnx",
+            "reward": -4.3656586688011885,
+            "creation_time": 1746076072.1254861,
+            "auxillary_file_paths": [
+                "results\\TrainThroughNightMazeGeneration\\MoveToGoal\\MoveToGoal-7000024.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

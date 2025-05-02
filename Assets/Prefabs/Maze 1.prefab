@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 18
+    VectorObservationSize: 16
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -329,7 +329,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03a8009190989084981f3bdd48530c62, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: MoveToGoal
@@ -353,14 +353,13 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 4000
+  MaxStep: 6000
   winMaterial: {fileID: 2100000, guid: 11136df41ae937945a6e90b1ca356f0d, type: 2}
   loseMaterial: {fileID: 2100000, guid: 6a037533bf99f834f8a21ad0b34e21f5, type: 2}
   floorMeshRenderer: {fileID: 3393294603770186062}
   goal: {fileID: 8455373793150190355}
   checkpoint1Transform: {fileID: 0}
   checkpoint2Transform: {fileID: 0}
-  wallHits: 0
 --- !u!114 &7720285496775476942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +401,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &7566542617972241891
 GameObject:
   m_ObjectHideFlags: 0

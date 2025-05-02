@@ -1,0 +1,32 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 382665,
+                "file_path": "results\\TrainThroughNightMazeGeneration2\\MoveToGoal\\MoveToGoal-382665.onnx",
+                "reward": -7.249843647942329,
+                "creation_time": 1746102080.6024265,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration2\\MoveToGoal\\MoveToGoal-382665.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 382665,
+            "file_path": "results\\TrainThroughNightMazeGeneration2\\MoveToGoal.onnx",
+            "reward": -7.249843647942329,
+            "creation_time": 1746102080.6024265,
+            "auxillary_file_paths": [
+                "results\\TrainThroughNightMazeGeneration2\\MoveToGoal\\MoveToGoal-382665.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

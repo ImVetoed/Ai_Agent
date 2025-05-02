@@ -21,10 +21,7 @@ public class MazeGenerator : MonoBehaviour
         Vector2Int.right
     };
 
-    public void Start()
-    {
-        GenerateMaze();
-    }
+   
 
     public void GenerateMaze()
     {
@@ -111,7 +108,7 @@ public class MazeGenerator : MonoBehaviour
     void PositionAgentAndGoal()
     {
         agent.localPosition = new Vector3(0, 0.5f, 0);
-        goal.localPosition = new Vector3(8, 0.05f, 8);
+        goal.localPosition = new Vector3(8.5f, 0.3f, 8.5f);
     }
 
     void ClearOldMaze()

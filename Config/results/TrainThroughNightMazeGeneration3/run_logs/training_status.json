@@ -1,0 +1,41 @@
+{
+    "maze_difficulty": {
+        "lesson_num": 0
+    },
+    "MoveToGoal": {
+        "checkpoints": [
+            {
+                "steps": 499999,
+                "file_path": "results\\TrainThroughNightMazeGeneration3\\MoveToGoal\\MoveToGoal-499999.onnx",
+                "reward": -24.072027612239758,
+                "creation_time": 1746103171.3444445,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration3\\MoveToGoal\\MoveToGoal-499999.pt"
+                ]
+            },
+            {
+                "steps": 827813,
+                "file_path": "results\\TrainThroughNightMazeGeneration3\\MoveToGoal\\MoveToGoal-827813.onnx",
+                "reward": -8.187812035341027,
+                "creation_time": 1746103944.7200823,
+                "auxillary_file_paths": [
+                    "results\\TrainThroughNightMazeGeneration3\\MoveToGoal\\MoveToGoal-827813.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 827813,
+            "file_path": "results\\TrainThroughNightMazeGeneration3\\MoveToGoal.onnx",
+            "reward": -8.187812035341027,
+            "creation_time": 1746103944.7200823,
+            "auxillary_file_paths": [
+                "results\\TrainThroughNightMazeGeneration3\\MoveToGoal\\MoveToGoal-827813.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu118"
+    }
+}

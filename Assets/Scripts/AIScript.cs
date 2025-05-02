@@ -9,68 +9,89 @@ public class AIScript : Agent
     [SerializeField] private Material loseMaterial;
     [SerializeField] private MeshRenderer floorMeshRenderer;
     [SerializeField] private Transform goal;
-    private MazeManager mazeManager;
+   
+
+    private float maxMazeDiagonal;
 
     [SerializeField] private Transform checkpoint1Transform;
     [SerializeField] private Transform checkpoint2Transform;
 
     private MazeGenerator mazeGenerator;
+    /*private bool touchingWall = false;
+    private float wallContactTimer = 0f;
+    private const float maxWallContactTime = 0.3f;*/
 
-   /* private Collider checkpoint1Collider;
-    private Collider checkpoint2Collider;
-
-    private bool hasHitCheckpoint1 = false;
-    private bool hasHitCheckpoint2 = false;*/
-
-    private float goalReward = 30f;
-    private float wallPenalty = -1f;
+    private float goalReward = 40f;
+    private float wallPenalty = -20f;
     private Vector3 previousPosition;
     private float oldDistance;
     private Rigidbody rb;
-   
-
-    [SerializeField] private float stuckTimeThreshold = 1.0f;  // how long before we consider it stuck
-    [SerializeField] private int maxWallHits = 3;   // how many bump-and-runs we tolerate
-
-    private int wallHits = 0;
-    private float wallContactTime = 0f;
-
 
 
     public override void Initialize()
     {
         rb = GetComponent<Rigidbody>();
-        mazeGenerator = GetComponentInParent<MazeGenerator>();
 
+       
+        mazeGenerator = GetComponentInParent<MazeGenerator>();
+        maxMazeDiagonal = Mathf.Sqrt(
+            mazeGenerator.width * mazeGenerator.width +
+            mazeGenerator.height * mazeGenerator.height
+        );
+
+        //touchingWall = false;
+        //wallContactTimer = 0f;
+    }
+
+    private void FixedUpdate()
+    {
+        
+        /*if (touchingWall)
+        {
+            wallContactTimer += Time.fixedDeltaTime;
+            if (wallContactTimer >= maxWallContactTime)
+            {
+                AddReward(wallPenalty);         
+                floorMeshRenderer.material = loseMaterial;
+                EndEpisode();
+            }
+        }*/
     }
 
     public override void OnEpisodeBegin()
     {
+       // transform.localPosition = new Vector3(1, 0.3f, -1);
         rb.linearVelocity = Vector3.zero;
-        mazeGenerator.GenerateMaze();
+
+       
+
+        
+        if (mazeGenerator != null)
+        {
+            mazeGenerator.GenerateMaze();
+        }
+       
         previousPosition = transform.localPosition;
         oldDistance = Vector3.Distance(transform.position, goal.position);
+       // touchingWall = false;
+        //wallContactTimer = 0f;
 
-        wallContactTime = 0f;
-
-        /*checkpoint1Collider = checkpoint1Transform.GetComponent<Collider>();
-        checkpoint2Collider = checkpoint2Transform.GetComponent<Collider>();
-
-        hasHitCheckpoint1 = false;
-        hasHitCheckpoint2 = false;*/
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(goal.localPosition);
+        Vector3 toGoal = goal.position - transform.position;
+        Vector3 localDir = transform.InverseTransformDirection(toGoal.normalized);
 
-      
+        sensor.AddObservation(localDir);                            
+        sensor.AddObservation(toGoal.magnitude / maxMazeDiagonal);
+
+
         CollectObstacleSensor(sensor);
     }
     void CollectObstacleSensor(VectorSensor sensor)
     {
-        float raycastRange = 5f;
+        float raycastRange = maxMazeDiagonal;
         int Rays = 12;
         float angleIncrement = 360f / Rays;
 
@@ -86,7 +107,7 @@ public class AIScript : Agent
             }
             else
             {
-                sensor.AddObservation(0f); 
+                sensor.AddObservation(1f); 
             }
         }
     }
@@ -98,19 +119,19 @@ public class AIScript : Agent
         float turnInput = actions.ContinuousActions[1];
         float strafeInput = actions.ContinuousActions[2];
 
-        float moveSpeed = 3f;
+        float moveSpeed = 2f;
         float turnSpeed = 60f;
 
-        transform.Rotate(Vector3.up, turnInput * turnSpeed * Time.deltaTime);
+        Vector3 move = (transform.forward * moveInput + transform.right * strafeInput) * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + move);
+        rb.MoveRotation(rb.rotation * Quaternion.Euler(0f, turnInput * turnSpeed * Time.fixedDeltaTime, 0f));
 
-        Vector3 forwardMovement = transform.forward * moveInput * moveSpeed * Time.deltaTime;
-        Vector3 strafeMovement = transform.right * strafeInput * moveSpeed * Time.deltaTime;
-
-        transform.localPosition += forwardMovement + strafeMovement;
+       
         float currentDistance = Vector3.Distance(transform.position, goal.position);
-        float progressReward = (oldDistance - currentDistance) * 0.05f;
-        AddReward(progressReward);
+        float delta = oldDistance - currentDistance;
+        AddReward(delta * 1f);
         oldDistance = currentDistance;
+
 
         /*if (!hasHitCheckpoint1 && checkpoint1Collider.bounds.Contains(transform.position))
         {
@@ -124,9 +145,9 @@ public class AIScript : Agent
             hasHitCheckpoint2 = true;
         }*/
 
-       
+
         float distanceMoved = Vector3.Distance(transform.localPosition, previousPosition);
-        AddReward(-0.001f);
+        AddReward(-0.0001f);
         
         previousPosition = transform.localPosition;
         oldDistance = currentDistance;
@@ -141,28 +162,25 @@ public class AIScript : Agent
         continuousActions[2] = Input.GetAxisRaw("Strafe");
     }
 
-    private void OnCollisionStay(Collision other)
+
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.TryGetComponent<Wall>(out _))
+        if (other.gameObject.CompareTag("Wall"))
         {
-            wallContactTime += Time.deltaTime;
-            // if they’re literally stuck against a wall for too long
-            if (wallContactTime >= stuckTimeThreshold)
-            {
-                AddReward(wallPenalty * 2); // bigger penalty for being stuck
-                EndEpisode();
-            }
+            AddReward(wallPenalty);
+            floorMeshRenderer.material = loseMaterial;
+            EndEpisode();
         }
     }
 
-    private void OnCollisionExit(Collision other)
+    /*private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.TryGetComponent<Wall>(out _))
+        if (other.gameObject.CompareTag("Wall"))
         {
-            // reset the stuck timer as soon as they move off
-            wallContactTime = 0f;
+            touchingWall = false;
+            wallContactTimer = 0f;          
         }
-    }
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {

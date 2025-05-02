@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 18
+    VectorObservationSize: 16
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -165,7 +165,6 @@ MonoBehaviour:
   goal: {fileID: 0}
   checkpoint1Transform: {fileID: 0}
   checkpoint2Transform: {fileID: 0}
-  wallHits: 0
 --- !u!114 &254967698550743794
 MonoBehaviour:
   m_ObjectHideFlags: 0
