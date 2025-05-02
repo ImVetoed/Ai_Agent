@@ -22,7 +22,7 @@ public class AIScript : Agent
     private const float maxWallContactTime = 0.3f;*/
 
     private float goalReward = 40f;
-    private float wallPenalty = -20f;
+    private float wallPenalty = -10f;
     private Vector3 previousPosition;
     private float oldDistance;
     private Rigidbody rb;
@@ -169,7 +169,7 @@ public class AIScript : Agent
         {
             AddReward(wallPenalty);
             floorMeshRenderer.material = loseMaterial;
-            EndEpisode();
+           // EndEpisode();
         }
     }
 
