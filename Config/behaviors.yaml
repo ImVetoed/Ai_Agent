@@ -23,7 +23,7 @@ behaviors:
       extrinsic:
         gamma:    0.99
         strength: 1.0
-    time_horizon:      128
+    time_horizon:      64
     summary_freq:      50000
     max_steps:         15000000
 

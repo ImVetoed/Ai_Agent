@@ -13,15 +13,9 @@ public class AIScript : Agent
 
     private float maxMazeDiagonal;
 
-    [SerializeField] private Transform checkpoint1Transform;
-    [SerializeField] private Transform checkpoint2Transform;
-
     private MazeGenerator mazeGenerator;
-    /*private bool touchingWall = false;
-    private float wallContactTimer = 0f;
-    private const float maxWallContactTime = 0.3f;*/
 
-    private float goalReward = 40f;
+    private float goalReward = 80f;
     private float wallPenalty = -10f;
     private Vector3 previousPosition;
     private float oldDistance;

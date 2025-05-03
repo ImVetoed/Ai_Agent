@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5229353737662224530}
   - component: {fileID: 8392534291412845097}
   - component: {fileID: 3393294603770186062}
-  - component: {fileID: 404490317155152028}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &404490317155152028
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556117077232073613}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5794375808208203601
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +306,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 03a8009190989084981f3bdd48530c62, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 42f78778ec57b2446a2ce07e28679efe, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: MoveToGoal
@@ -353,13 +330,11 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 6000
+  MaxStep: 5000
   winMaterial: {fileID: 2100000, guid: 11136df41ae937945a6e90b1ca356f0d, type: 2}
   loseMaterial: {fileID: 2100000, guid: 6a037533bf99f834f8a21ad0b34e21f5, type: 2}
   floorMeshRenderer: {fileID: 3393294603770186062}
   goal: {fileID: 8455373793150190355}
-  checkpoint1Transform: {fileID: 0}
-  checkpoint2Transform: {fileID: 0}
 --- !u!114 &7720285496775476942
 MonoBehaviour:
   m_ObjectHideFlags: 0
